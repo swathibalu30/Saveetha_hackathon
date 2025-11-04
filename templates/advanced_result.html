@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Diagnosis Result - Automated Diagnostic System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .result-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .patient-info {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .patient-info h3 {
+            margin-top: 0;
+            color: #667eea;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .info-item {
+            padding: 0.5rem;
+            background: #f8f9ff;
+            border-radius: 4px;
+        }
+        
+        .info-label {
+            font-weight: bold;
+            color: #666;
+            font-size: 0.85rem;
+        }
+        
+        .info-value {
+            color: #333;
+            font-size: 1.1rem;
+            margin-top: 0.25rem;
+        }
+        
+        .diagnosis-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .ml-prediction {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .ml-prediction h2 {
+            margin: 0 0 0.5rem 0;
+        }
+        
+        .ml-prediction .diagnosis-name {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .ai-analysis {
+            background: #f8f9ff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            margin-bottom: 2rem;
+            white-space: pre-wrap;
+            line-height: 1.8;
+        }
+        
+        .ai-analysis h3 {
+            margin-top: 0;
+            color: #667eea;
+        }
+        
+        .sources-section {
+            margin-top: 2rem;
+        }
+        
+        .source-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+        }
+        
+        .source-card h4 {
+            margin-top: 0;
+            color: #667eea;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .source-badge {
+            background: #667eea;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+        
+        .pubmed-article {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+        
+        .pubmed-article h5 {
+            margin: 0 0 0.5rem 0;
+            color: #333;
+        }
+        
+        .pubmed-meta {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        
+        .pubmed-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .pubmed-link:hover {
+            text-decoration: underline;
+        }
+        
+        .disclaimer {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 2rem;
+        }
+        
+        .disclaimer strong {
+            color: #856404;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        
+        .api-key-notice {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .no-api-warning {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-brand">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo">
+            <h2>Diagnostic System</h2>
+        </div>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('diagnosis') }}">Basic Diagnosis</a></li>
+            <li><a href="{{ url_for('advanced_diagnosis') }}" class="active">Advanced AI Diagnosis</a></li>
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('upload_report') }}">Upload Report</a></li>
+            <li><a href="{{ url_for('view_reports') }}">Reports</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="result-header">
+            <h1>🔬 Advanced Diagnosis Complete</h1>
+            <p>Comprehensive AI-powered medical analysis</p>
+        </div>
+
+        <!-- Patient Information -->
+        <div class="patient-info">
+            <h3>👤 Patient Information</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Name</div>
+                    <div class="info-value">{{ patient_data.name }}</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Age</div>
+                    <div class="info-value">{{ patient_data.age }} years</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Gender</div>
+                    <div class="info-value">{{ patient_data.gender }}</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Blood Pressure</div>
+                    <div class="info-value">{{ patient_data.bp }} mmHg</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Glucose Level</div>
+                    <div class="info-value">{{ patient_data.glucose }} mg/dL</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Heart Rate</div>
+                    <div class="info-value">{{ patient_data.heart_rate }} bpm</div>
+                </div>
+            </div>
+            <div style="margin-top: 1rem; padding: 1rem; background: #f8f9ff; border-radius: 4px;">
+                <div class="info-label">Reported Symptoms</div>
+                <div class="info-value">{{ patient_data.symptoms }}</div>
+            </div>
+        </div>
+
+        <!-- ML Model Prediction -->
+        <div class="ml-prediction">
+            <h2>🤖 Machine Learning Model Prediction</h2>
+            <div class="diagnosis-name">{{ ml_diagnosis }}</div>
+            <p style="margin: 0.5rem 0 0 0; opacity: 0.9;">Based on Random Forest Classifier trained on patient vitals</p>
+        </div>
+
+        <!-- AI Analysis Section -->
+        {% if report.ai_analysis.success %}
+            <div class="diagnosis-section">
+                <h2 style="color: #667eea;">🧠 AI-Powered Analysis</h2>
+                <div class="api-key-notice">
+                    <strong>✅ Powered by Groq AI</strong> - Lightning-fast health analysis with Llama 3.3 70B
+                </div>
+                
+                <div class="ai-analysis">{{ report.ai_analysis.analysis }}</div>
+            </div>
+        {% else %}
+            <div class="diagnosis-section">
+                <h2 style="color: #667eea;">🧠 AI-Powered Analysis</h2>
+                <div class="no-api-warning">
+                    <strong>⚠️ API Key Required</strong><br>
+                    To enable advanced AI analysis, please configure an API key. See setup instructions below.
+                </div>
+                <div class="ai-analysis">{{ report.ai_analysis.analysis }}</div>
+            </div>
+        {% endif %}
+
+        <!-- Medical Sources Section -->
+        <div class="sources-section">
+            <h2 style="color: #667eea;">📚 Medical Research & Sources</h2>
+
+            <!-- PubMed Articles -->
+            {% if report.medical_sources.pubmed_articles and report.medical_sources.pubmed_articles|length > 0 %}
+                <div class="source-card">
+                    <h4>
+                        📖 PubMed Research Articles
+                        <span class="source-badge">Evidence-Based</span>
+                    </h4>
+                    {% for article in report.medical_sources.pubmed_articles %}
+                        <div class="pubmed-article">
+                            <h5>{{ article.title }}</h5>
+                            <div class="pubmed-meta">
+                                <strong>Authors:</strong> {{ article.authors }}<br>
+                                <strong>Journal:</strong> {{ article.journal }}<br>
+                                <strong>Published:</strong> {{ article.pub_date }}
+                            </div>
+                            <a href="{{ article.url }}" target="_blank" class="pubmed-link">
+                                Read Full Article on PubMed →
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <!-- Wikipedia Summary -->
+            {% if report.medical_sources.wikipedia %}
+                <div class="source-card">
+                    <h4>
+                        🌐 Wikipedia Medical Overview
+                        <span class="source-badge">General Reference</span>
+                    </h4>
+                    <p>{{ report.medical_sources.wikipedia.content }}</p>
+                </div>
+            {% endif %}
+
+            <!-- Web Search Results -->
+            {% if report.medical_sources.web_search and report.medical_sources.web_search|length > 0 %}
+                <div class="source-card">
+                    <h4>
+                        🔍 Medical Web Search
+                        <span class="source-badge">Online Sources</span>
+                    </h4>
+                    {% for result in report.medical_sources.web_search %}
+                        <p>{{ result.content }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="disclaimer">
+            <strong>⚠️ Medical Disclaimer</strong><br>
+            This AI-assisted analysis is for educational and informational purposes only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition. Never disregard professional medical advice or delay in seeking it because of something you have read in this analysis.
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <a href="{{ url_for('advanced_diagnosis') }}" class="btn-primary">🔬 New Advanced Diagnosis</a>
+            <a href="{{ url_for('diagnosis') }}" class="btn-secondary">📋 Basic Diagnosis</a>
+            <a href="{{ url_for('dashboard') }}" class="btn-secondary">📊 View Dashboard</a>
+            <button onclick="window.print()" class="btn-secondary">🖨️ Print Report</button>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

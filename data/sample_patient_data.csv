@@ -1,0 +1,73 @@
+name,age,gender,bp,glucose,heart_rate,symptoms,diagnosis
+John Doe,55,Male,145,115,88,Chest Pain,Heart Disease
+Jane Smith,32,Female,118,92,70,Headache,Migraine
+Michael Brown,58,Male,140,185,78,Fatigue,Diabetes
+Emily Davis,41,Female,155,98,82,Dizziness,Hypertension
+Robert Wilson,50,Male,148,118,90,Chest Pain,Heart Disease
+Sarah Johnson,29,Female,112,88,68,Nausea,Gastritis
+David Lee,62,Male,135,180,75,Blurred Vision,Diabetes
+Lisa Anderson,38,Female,120,94,72,Headache,Migraine
+James Taylor,47,Male,130,105,92,Shortness of Breath,Asthma
+Mary Martinez,55,Female,125,100,76,Joint Pain,Arthritis
+William Garcia,33,Male,115,90,68,Fever,Flu
+Patricia Rodriguez,44,Female,122,98,74,Fatigue,Anemia
+Thomas Hernandez,51,Male,138,190,80,Frequent Urination,Diabetes
+Jennifer Lopez,36,Female,118,86,70,Abdominal Pain,Gastritis
+Christopher Moore,48,Male,150,120,86,Chest Pain,Heart Disease
+Linda Jackson,42,Female,158,96,78,Dizziness,Hypertension
+Daniel White,56,Male,142,175,82,Numbness,Diabetes
+Jessica Harris,39,Female,122,92,74,Headache,Migraine
+Matthew Martin,60,Male,136,195,76,Vision Problems,Diabetes
+Ashley Thompson,31,Female,110,88,70,Cough,Bronchitis
+Andrew Martinez,52,Male,146,122,88,Chest Discomfort,Heart Disease
+Amanda Clark,34,Female,116,90,68,Fever,Infection
+Joshua Lewis,53,Male,140,188,84,Weakness,Diabetes
+Stephanie Walker,40,Female,120,95,72,Back Pain,Muscle Strain
+Ryan Hall,54,Male,144,116,90,Palpitations,Heart Disease
+Michelle Allen,37,Female,125,96,74,Fatigue,Thyroid Disorder
+Brandon Young,59,Male,138,182,78,Leg Pain,Diabetes
+Rebecca King,43,Female,124,94,76,Severe Headache,Migraine
+Nicholas Wright,57,Male,152,124,92,Chest Pain,Heart Disease
+Samantha Scott,28,Female,114,86,68,Nausea,Gastritis
+Paul Anderson,61,Male,144,192,80,Thirst,Diabetes
+Karen White,35,Female,120,90,72,Migraine,Migraine
+George Miller,49,Male,148,120,88,Chest Tightness,Heart Disease
+Nancy Wilson,45,Female,160,100,84,High BP,Hypertension
+Kevin Brown,63,Male,140,188,76,High Sugar,Diabetes
+Laura Taylor,33,Female,116,88,70,Headache,Migraine
+Mark Johnson,56,Male,150,126,90,Heart Pain,Heart Disease
+Susan Lee,40,Female,154,98,80,Elevated BP,Hypertension
+Richard Davis,64,Male,136,195,74,Diabetic Symptoms,Diabetes
+Betty Martinez,34,Female,118,92,72,Head Pain,Migraine
+Donald Clark,58,Male,146,122,86,Angina,Heart Disease
+Carol Rodriguez,44,Female,158,96,82,Hypertension,Hypertension
+Steven Lewis,60,Male,142,190,78,High Glucose,Diabetes
+Dorothy Hall,36,Female,122,94,74,Headache Pain,Migraine
+Joseph Walker,51,Male,144,118,88,Cardiac Pain,Heart Disease
+Lisa Young,46,Female,156,100,84,High Blood Pressure,Hypertension
+Charles King,62,Male,138,186,76,Diabetes,Diabetes
+Maria Scott,37,Female,120,90,72,Severe Migraine,Migraine
+Thomas Anderson,53,Male,148,124,90,Heart Issues,Heart Disease
+Barbara White,48,Female,160,98,86,BP Issues,Hypertension
+Daniel Miller,65,Male,140,198,72,Sugar Problems,Diabetes
+Jennifer Wilson,35,Female,116,88,70,Chronic Headache,Migraine
+Michael Brown,54,Male,150,128,92,Chest Pressure,Heart Disease
+Elizabeth Taylor,43,Female,154,96,80,High Pressure,Hypertension
+Robert Johnson,66,Male,138,192,74,Elevated Sugar,Diabetes
+Linda Lee,38,Female,124,92,76,Migraine Attack,Migraine
+David Davis,55,Male,146,122,88,Heart Attack Risk,Heart Disease
+Patricia Martinez,47,Female,158,100,84,Pressure High,Hypertension
+James Clark,61,Male,142,188,78,Diabetic,Diabetes
+Mary Rodriguez,39,Female,118,90,72,Head Throbbing,Migraine
+John Lewis,52,Male,144,126,90,Cardiovascular,Heart Disease
+Sarah Hall,45,Female,156,98,82,Hypertensive,Hypertension
+William Walker,63,Male,140,195,76,Type 2 Diabetes,Diabetes
+Jessica King,34,Female,122,92,74,Intense Headache,Migraine
+Christopher Scott,56,Male,148,120,86,Coronary Issues,Heart Disease
+Nancy Anderson,44,Female,160,96,80,High BP Reading,Hypertension
+Matthew White,64,Male,136,190,72,Glucose High,Diabetes
+Karen Miller,36,Female,120,88,70,Pulsing Headache,Migraine
+Andrew Wilson,50,Male,150,124,88,Myocardial Issues,Heart Disease
+Betty Taylor,42,Female,154,100,84,Blood Pressure High,Hypertension
+Joshua Johnson,62,Male,138,186,78,Blood Sugar High,Diabetes
+Michelle Lee,33,Female,116,90,72,Throbbing Pain,Migraine

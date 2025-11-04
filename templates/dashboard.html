@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Medical Logo" class="logo">
+            <h1>Patient Dashboard</h1>
+            <nav>
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('diagnosis') }}">New Diagnosis</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </nav>
+        </header>
+        
+        <main>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            
+            <div class="dashboard-container">
+                <h2>All Patient Records</h2>
+                
+                {% if patients %}
+                    <div class="table-responsive">
+                        <table class="patient-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>BP</th>
+                                    <th>Glucose</th>
+                                    <th>Heart Rate</th>
+                                    <th>Symptoms</th>
+                                    <th>Diagnosis</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for patient in patients %}
+                                <tr>
+                                    <td>{{ loop.index }}</td>
+                                    <td>{{ patient.name }}</td>
+                                    <td>{{ patient.age }}</td>
+                                    <td>{{ patient.gender }}</td>
+                                    <td>{{ patient.bp }}</td>
+                                    <td>{{ patient.glucose }}</td>
+                                    <td>{{ patient.heart_rate }}</td>
+                                    <td class="symptoms-cell">{{ patient.symptoms[:50] }}{% if patient.symptoms|length > 50 %}...{% endif %}</td>
+                                    <td><span class="diagnosis-tag">{{ patient.diagnosis }}</span></td>
+                                    <td>{{ patient.date.strftime('%Y-%m-%d %H:%M') if patient.date else 'N/A' }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="dashboard-stats">
+                        <p><strong>Total Patients:</strong> {{ patients|length }}</p>
+                    </div>
+                {% else %}
+                    <div class="no-data">
+                        <p>No patient records found.</p>
+                        <a href="{{ url_for('diagnosis') }}" class="btn btn-primary">Add First Patient</a>
+                    </div>
+                {% endif %}
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 Automated Diagnostic System. All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
