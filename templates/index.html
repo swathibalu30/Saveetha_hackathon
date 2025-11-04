@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare Health - AI-Powered Healthcare Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    {% include '_header.html' %}
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1>AI-Powered Health Intelligence at Your Fingertips</h1>
+            <p>Access advanced medical diagnostics, personalized health insights, and comprehensive care management from anywhere</p>
+            <div class="btn-group">
+                {% if session.get('username') %}
+                    <a href="{{ url_for('diagnosis') }}" class="btn btn-primary btn-large">Start Health Assessment</a>
+                    <a href="{{ url_for('advanced_diagnosis') }}" class="btn btn-secondary btn-large">Advanced AI Analysis</a>
+                {% else %}
+                    <a href="{{ url_for('register') }}" class="btn btn-primary btn-large">Create Free Account</a>
+                    <a href="{{ url_for('login') }}" class="btn btn-secondary btn-large">Sign In</a>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Indicators -->
+    <section class="trust-section">
+        <div class="container">
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <div class="icon"><i class="fa fa-user-md"></i></div>
+                    <div class="label">Trusted by Clinicians</div>
+                </div>
+                <div class="trust-item">
+                    <div class="icon"><i class="fa fa-file-medical"></i></div>
+                    <div class="label">Evidence-based Assessments</div>
+                </div>
+                <div class="trust-item">
+                    <div class="icon"><i class="fa fa-check-circle"></i></div>
+                    <div class="label">High Model Reliability</div>
+                </div>
+                <div class="trust-item">
+                    <div class="icon"><i class="fa fa-clock"></i></div>
+                    <div class="label">24/7 Availability</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features/Services Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <h2 class="section-title">Comprehensive Digital Health Services</h2>
+            <p class="section-subtitle">Everything you need for proactive health management in one platform</p>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="service-badge">Health Assessment</div>
+                    <h3><i class="fa fa-bolt" aria-hidden="true"></i> Quick Health Check</h3>
+                    <p>Instant symptom analysis powered by machine learning trained on millions of medical cases and clinical data</p>
+                    <a href="{{ url_for('diagnosis') }}" class="btn btn-primary">Start Assessment</a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="service-badge">AI Technology</div>
+                    <h3><i class="fa fa-robot" aria-hidden="true"></i> Advanced AI Diagnosis</h3>
+                    <p>Comprehensive health analysis using Google Gemini AI with real-time medical research from PubMed database</p>
+                    <a href="{{ url_for('advanced_diagnosis') }}" class="btn btn-primary">Get AI Insights</a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="service-badge">Records Management</div>
+                    <h3><i class="fa fa-file-alt" aria-hidden="true"></i> Digital Health Records</h3>
+                    <p>Securely store, manage, and access your medical documents, lab results, and imaging studies anytime</p>
+                    <a href="{{ url_for('upload_report') }}" class="btn btn-primary">Manage Records</a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="service-badge">Personal Dashboard</div>
+                    <h3><i class="fa fa-chart-bar" aria-hidden="true"></i> Health Dashboard</h3>
+                    <p>Track health trends, monitor vital signs, view assessment history, and get personalized health insights</p>
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-primary">View Dashboard</a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="service-badge">Health History</div>
+                    <h3><i class="fa fa-timeline" aria-hidden="true"></i> Medical Timeline</h3>
+                    <p>Complete chronological view of your health journey with searchable records and detailed report analytics</p>
+                    <a href="{{ url_for('view_reports') }}" class="btn btn-primary">View History</a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="service-badge">Platform Support</div>
+                    <h3><i class="fa fa-comments" aria-hidden="true"></i> 24/7 Support</h3>
+                    <p>Round-the-clock platform assistance, healthcare guidance, and technical support for all your needs</p>
+                    <a href="#contact" class="btn btn-primary">Get Help</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="process-section">
+        <div class="container">
+            <h2 class="section-title">How MediCare Health Works</h2>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Create Account</h3>
+                    <p>Sign up securely in under 2 minutes</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Input Health Data</h3>
+                    <p>Share symptoms and vital information</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Get AI-Powered Insights</h3>
+                    <p>Receive instant analysis and recommendations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Transform Your Health Management Today</h2>
+            <p>Trusted by clinicians and patients for reliable, AI-assisted health insights</p>
+            <div class="btn-group">
+                {% if session.get('username') %}
+                    <a href="{{ url_for('diagnosis') }}" class="btn btn-primary btn-large">Start Health Check</a>
+                {% else %}
+                    <a href="{{ url_for('register') }}" class="btn btn-primary btn-large">Get Started Free</a>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    {% include '_footer.html' %}
+</body>
+</html>

@@ -1,0 +1,41 @@
+<footer>
+    <div class="container footer-wrapper">
+        <div class="footer-sections">
+            <div class="footer-about">
+                <h3>MediCare Health</h3>
+                <p>Empowering individuals with AI-driven health intelligence and personalized care management solutions.</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Platform</h4>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('diagnosis') }}">Health Assessment</a></li>
+                    <li><a href="{{ url_for('advanced_diagnosis') }}">AI Diagnosis</a></li>
+                    <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-services">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="{{ url_for('diagnosis') }}">Quick Health Check</a></li>
+                    <li><a href="{{ url_for('advanced_diagnosis') }}">Advanced Analysis</a></li>
+                    <li><a href="{{ url_for('upload_report') }}">Health Records</a></li>
+                    <li><a href="{{ url_for('view_reports') }}">Medical History</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Contact & Support</h4>
+                <p><i class="fa fa-envelope"></i> support@medicarehealth.com</p>
+                <p><i class="fa fa-comments"></i> Live Chat: Available 24/7</p>
+                <p><i class="fa fa-lock"></i> HIPAA Compliant Platform</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 MediCare Health. All rights reserved. | <a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms</a></p>
+        </div>
+    </div>
+</footer>

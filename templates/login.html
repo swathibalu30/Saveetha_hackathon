@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - MediCare Health Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .auth-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            max-width: 1000px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .auth-hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-teal) 100%);
+            padding: 60px 40px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .auth-hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .auth-hero p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+        
+        .auth-hero-features {
+            margin-top: 30px;
+        }
+        
+        .auth-hero-features li {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .auth-form-section {
+            padding: 60px 50px;
+        }
+        
+        .auth-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .auth-header h1 {
+            color: var(--text-dark);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .auth-header p {
+            color: var(--dark-gray);
+        }
+        
+        @media (max-width: 768px) {
+            .auth-card {
+                grid-template-columns: 1fr;
+            }
+            .auth-hero {
+                padding: 40px 30px;
+            }
+            .auth-form-section {
+                padding: 40px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% include '_header.html' %}
+    <div class="auth-container">
+        <div class="auth-card">
+            <!-- Hero Section -->
+            <div class="auth-hero">
+                <div>
+                    <h2><i class="fa fa-hospital" aria-hidden="true"></i> MediCare Health</h2>
+                    <p>Welcome back! Access your personalized health dashboard and AI-powered diagnostic tools.</p>
+                    
+                    <ul class="auth-hero-features">
+                        <li>✨ AI-Powered Health Analysis</li>
+                        <li><i class="fa fa-chart-bar" aria-hidden="true"></i> Personal Health Dashboard</li>
+                        <li><i class="fa fa-lock" aria-hidden="true"></i> HIPAA-Compliant Security</li>
+                        <li>📱 Access Anywhere, Anytime</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Form Section -->
+            <div class="auth-form-section">
+                <div class="auth-header">
+                    <h1>Sign In</h1>
+                    <p>Enter your credentials to continue</p>
+                </div>
+                
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}" style="margin-bottom: 20px; padding: 12px; border-radius: 8px; background: {% if category == 'success' %}#d4edda{% elif category == 'danger' %}#f8d7da{% elif category == 'warning' %}#fff3cd{% else %}#d1ecf1{% endif %}; color: {% if category == 'success' %}#155724{% elif category == 'danger' %}#721c24{% elif category == 'warning' %}#856404{% else %}#0c5460{% endif %};">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                
+                <form action="{{ url_for('login') }}" method="POST">
+                    <div class="form-group" style="margin-bottom: 25px;">
+                        <label for="username" style="display: block; margin-bottom: 8px; color: var(--text-dark); font-weight: 500;">Username</label>
+                        <input type="text" id="username" name="username" required 
+                               placeholder="Enter your username"
+                               style="width: 100%; padding: 14px; border: 2px solid var(--gray-light); border-radius: 10px; font-size: 1rem; transition: all 0.3s;">
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 25px;">
+                        <label for="password" style="display: block; margin-bottom: 8px; color: var(--text-dark); font-weight: 500;">Password</label>
+                        <input type="password" id="password" name="password" required 
+                               placeholder="Enter your password"
+                               style="width: 100%; padding: 14px; border: 2px solid var(--gray-light); border-radius: 10px; font-size: 1rem; transition: all 0.3s;">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" 
+                            style="width: 100%; padding: 15px; font-size: 1.1rem; border-radius: 10px; margin-top: 10px;">
+                        Sign In
+                    </button>
+                </form>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <p style="color: var(--dark-gray);">
+                        Don't have an account? 
+                        <a href="{{ url_for('register') }}" style="color: var(--primary-blue); font-weight: 600; text-decoration: none;">Create Account</a>
+                    </p>
+                    
+                    <div style="margin-top: 25px; padding: 15px; background: var(--light-bg); border-radius: 10px;">
+                        <p style="margin: 0; font-size: 0.9rem; color: var(--dark-gray);">
+                            <strong>Demo Access:</strong><br>
+                            Username: <code>admin</code> | Password: <code>admin123</code>
+                        </p>
+                    </div>
+                    
+                    <div style="margin-top: 20px;">
+                        <a href="{{ url_for('index') }}" style="color: var(--dark-gray); text-decoration: none; font-size: 0.9rem;">
+                            ← Back to Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+    {% include '_footer.html' %}
+</body>
+</html>

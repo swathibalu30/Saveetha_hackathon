@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Reports</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        {% include '_header.html' %}
+        
+        <main>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            
+            <div class="dashboard-container">
+                <div class="reports-header">
+                    <h2>All Medical Reports</h2>
+                    <a href="{{ url_for('upload_report') }}" class="btn btn-primary">+ Upload New Report</a>
+                </div>
+                
+                {% if reports %}
+                    <div class="table-responsive">
+                        <table class="patient-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Patient Name</th>
+                                    <th>Report Type</th>
+                                    <th>File Name</th>
+                                    <th>File Size</th>
+                                    <th>Upload Date</th>
+                                    <th>Uploaded By</th>
+                                    <th>Status</th>
+                                    <th>Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for report in reports %}
+                                <tr>
+                                    <td>{{ loop.index }}</td>
+                                    <td><strong>{{ report.patient_name }}</strong></td>
+                                    <td>
+                                        <span class="report-type-badge">{{ report.report_type }}</span>
+                                    </td>
+                                    <td class="file-name">
+                                        <i class="fa fa-file-alt" aria-hidden="true"></i> {{ report.original_filename }}
+                                    </td>
+                                    <td>{{ (report.file_size / 1024 / 1024)|round(2) }} MB</td>
+                                    <td>{{ report.upload_date.strftime('%Y-%m-%d %H:%M') if report.upload_date else 'N/A' }}</td>
+                                    <td>{{ report.uploaded_by }}</td>
+                                    <td>
+                                        <span class="status-badge status-{{ report.status }}">
+                                            {{ report.status }}
+                                        </span>
+                                    </td>
+                                    <td class="notes-cell">
+                                        {% if report.notes %}
+                                            {{ report.notes[:50] }}{% if report.notes|length > 50 %}...{% endif %}
+                                        {% else %}
+                                            <em>No notes</em>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="dashboard-stats">
+                        <div class="stat-card">
+                            <h3>{{ reports|length }}</h3>
+                            <p>Total Reports</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>{{ reports|selectattr('report_type', 'equalto', 'Blood Test')|list|length }}</h3>
+                            <p>Blood Tests</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>{{ reports|selectattr('report_type', 'equalto', 'X-Ray')|list|length }}</h3>
+                            <p>X-Rays</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>{{ reports|selectattr('report_type', 'equalto', 'Lab Report')|list|length }}</h3>
+                            <p>Lab Reports</p>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="no-data">
+                        <div class="empty-state">
+                            <h3><i class="fa fa-folder-open" aria-hidden="true"></i> No Reports Found</h3>
+                            <p>No medical reports have been uploaded yet.</p>
+                            <a href="{{ url_for('upload_report') }}" class="btn btn-primary">Upload Your First Report</a>
+                        </div>
+                    </div>
+                {% endif %}
+                
+                <div class="info-section">
+                    <h3>💡 About Medical Reports</h3>
+                    <div class="info-cards">
+                        <div class="info-card">
+                            <strong><i class="fa fa-lock" aria-hidden="true"></i> Secure Storage</strong>
+                            <p>All reports are stored securely with timestamp tracking</p>
+                        </div>
+                        <div class="info-card">
+                            <strong><i class="fa fa-chart-bar" aria-hidden="true"></i> Easy Access</strong>
+                            <p>View and manage all patient reports in one place</p>
+                        </div>
+                        <div class="info-card">
+                            <strong><i class="fa fa-file-medical-alt" aria-hidden="true"></i> Multiple Formats</strong>
+                            <p>Support for PDF, images, and document files</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        {% include '_footer.html' %}
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
